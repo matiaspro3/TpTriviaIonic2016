@@ -19,7 +19,7 @@ Copyright (c) 2014 Daniel Eden
 }
 
 .animated.hinge {
-  -webkit-animation-duration: 2s;
+  -webkit-animation-duration: 2s;      /*tiempo q dura colgado*/
           animation-duration: 2s;
 }
 

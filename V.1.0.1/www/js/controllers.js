@@ -114,5 +114,5 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AcercadeCtrl', function($scope) {
-  $scope.miFoto = 'img/perfil.png';
+  $scope.miFoto = 'img/aionic.png';
 });
