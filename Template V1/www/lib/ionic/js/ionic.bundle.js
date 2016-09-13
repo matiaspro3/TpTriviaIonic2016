@@ -54971,7 +54971,7 @@ IonicModule
 
     backButton: {
       icon: 'ion-ios-arrow-back',
-      text: 'Back',
+      text: 'Volver', // este volver es!!!!!!!!
       previousTitleText: true
     },
 
