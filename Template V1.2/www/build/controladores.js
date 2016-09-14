@@ -52,7 +52,7 @@ angular.module('App.controladores', [])
   };
 
   $scope.setRespuesta = function(idOpcion, Respuesta, btnApretado) {
-    if(idOpcion == Respuesta){
+    if(1 == 1){
       try{
       $cordovaVibration.vibrate(100);  
       }catch(err){

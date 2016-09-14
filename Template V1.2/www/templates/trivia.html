@@ -1,5 +1,6 @@
-<ion-view view-title="Trivia" class="center">
-  <ion-content>
+
+<ion-view view-title="Trivia" class="center" ng-style={'background-color':'coral'}>
+  <ion-content class="center-content animated slideInUp">
 
 <center ng-show="showComenzar">
     <button class="button button-positive" ng-click="getPregunta()">
@@ -15,8 +16,7 @@
   </center>
 <br><br>
 <br><br>
-<br><br>
-<br><br>
+
 <br><br>
 
 <button class="button button-block button-positive" ng-repeat="opcion in opciones" ng-show="opcion.$id =='o1'+preguntas[random].$id" ng-click="setRespuesta(opcion.$id, preguntas[random].$id, respuestas[random].$value)">
@@ -36,7 +36,7 @@
   <div class="button-bar">
 <button class="button button-icon icon ion-magnet"  style="color:lightblue" nav-clear menu-close nav-direction="exit" ui-sref="app.gallery">Volver</button>
  <button class="button button-icon icon ion-home"  style="color:blue" nav-clear menu-close nav-direction="exit" ui-sref="home">Inicio</button>
- <button class="button button-icon icon ion-log-out" style="color: coral" on-tap="exitApp()">Salir</button>
+ <button class="button button-icon icon ion-log-out" style="color: red" on-tap="exitApp()">Salir</button>
  </div>
 
   </ion-content>
