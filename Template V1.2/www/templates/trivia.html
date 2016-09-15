@@ -8,11 +8,12 @@
     </button>
 </center>
 
-<div ng-show = "showPregunta">
+<div ng-show = "showPregunta" style="color:lightblue">
 <br><br>
 <br><br>
   <center>
-    {{preguntas[random].$value}}
+    {{preguntas1[random].$value}}
+    456
   </center>
 <br><br>
 <br><br>
@@ -25,7 +26,8 @@
 <button class="button button-block button-positive" ng-repeat="opcion in opciones" ng-show="opcion.$id =='o2'+preguntas[random].$id" ng-click="setRespuesta(opcion.$id, preguntas[random].$id, respuestas[random].$value)">
   {{opcion.$value}}
 </button>
-<button class="button button-block button-positive" ng-repeat="opcion in opciones" ng-show="opcion.$id =='o3'+preguntas[random].$id" ng-click="setRespuesta(opcion.$id, preguntas[random].$id, respuestas[random].$value)">
+<button class="button button-block button-positive" ng-repeat="opcion in opciones" ng-show="opcion.$id =='o3'+preguntas[random].$id"
+ ng-click="setRespuesta(opcion.$id, preguntas[random].$id, respuestas[random].$value)">
   {{opcion.$value}}
 </button>
 </div>

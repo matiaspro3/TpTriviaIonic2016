@@ -387,7 +387,21 @@ window.queries = [
         ];
 
         $scope.exitApp = function () {
-            ionic.Platform.exitApp();
+           // ionic.Platform.exitApp();
+var deviceInformation = ionic.Platform.device();
+
+  var isWebView = ionic.Platform.isWebView();
+  var isIPad = ionic.Platform.isIPad();
+  var isIOS = ionic.Platform.isIOS();
+  var isAndroid = ionic.Platform.isAndroid();
+  var isWindowsPhone = ionic.Platform.isWindowsPhone();
+
+  var currentPlatform = ionic.Platform.platform();
+  var currentPlatformVersion = ionic.Platform.version();
+
+  ionic.Platform.exitApp();
+
+           
         };
 
         $ionicPopover.fromTemplateUrl('templates/modals/popover.html', {

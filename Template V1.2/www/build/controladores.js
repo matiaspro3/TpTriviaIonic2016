@@ -8,7 +8,13 @@ angular.module('App.controladores', [])
         $scope.showAlert("POR FAVOR INGRESE SU NOMBRE");
       else{
         $scope.showAlert("BIENVENIDO " + $scope.usuario.nombre + "!");
-        var usuario = { "nombre": $scope.usuario.nombre};
+        var usuario = { "user": $scope.usuario.nombre};
+        
+        console.log(usuario);               // no esta reciviendo paramatros el state
+        console.log("finn");               // no esta reciviendo paramatros el state
+
+
+
         $state.go('Trivia', usuario);
       }
     };
@@ -27,28 +33,53 @@ angular.module('App.controladores', [])
 })
 
 
-.controller('controlerTrivia', function($scope, $ionicPopup, $state, $stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout, Preguntas, Respuestas, Opciones ) {
+.controller('controlerTrivia', function($scope, $ionicPopup, $state, $stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout, Preguntas, Respuestas, Opciones,$firebaseArray ) {
+  
+        // no esta reciviendo paramatros el state
+        
+  $scope.nombreUsuario =angular.fromJson($stateParams);
+  console.log($scope.nombreUsuario.user);
 
-  $scope.nombreUsuario = angular.fromJson($stateParams);
-  $scope.showComenzar = true;
+console.log("finn2");               // no esta reciviendo paramatros el state
+
+
+
+
+    $scope.showComenzar = true;
   $scope.seCargaronLosSonidos = false;
-  $scope.preguntas = Preguntas;
+  $scope.preguntas1 = Preguntas;
   $scope.respuestas = Respuestas;
   $scope.opciones = Opciones;
   $scope.btnOp1Estado = 'clear';
   $scope.btnOp2Estado = 'clear';
   $scope.btnOp3Estado = 'clear';
 
-  $scope.random = Math.round(Math.random() * 2); //TODO: Cambiar el random a un tanaño variable de a cuerdo a la cantidad de preguntas cargadas en firebase
+  $scope.random = Math.round(Math.random() * 3); //TODO: Cambiar el random a un tanaño variable de a cuerdo a la cantidad de preguntas cargadas en firebase
 
   $scope.getPregunta = function() {
-    if($scope.nombreUsuario.nombre == 'NOLOGUEADO'){
+   // if($scope.nombreUsuario.user == null){
     $scope.showAlert("No se ha logueado!");
-    $state.go('tab.login');
-  }else{
+   // $state.go('Login');
+  //}else{
+
+
+
+
     $scope.showComenzar = false;
     $scope.showPregunta = true;
-  }
+
+
+  var ref = new Firebase("https://trivia-b8a12.firebaseio.com/preguntas");
+  $scope.messages = $firebaseArray(ref);
+  console.log($scope.messages);
+
+  $scope.pregunta1=$scope.messages;
+  console.log($scope.pregunta1);
+
+
+
+
+  //}
   };
 
   $scope.setRespuesta = function(idOpcion, Respuesta, btnApretado) {
@@ -136,7 +167,7 @@ try{
       }, function (error) {
         console.log(error);
       });
-  }
+  }  
 }catch(err){
   console.log("No es un dispositivo mobile");
 }
@@ -155,9 +186,18 @@ $scope.play = function (sound) {
 
 //*************************************************************************************
     //servicios
+
+
+ 
+
+
+
+
+
+/*********************************************************/
 angular.module('App.firebase', [])
 .factory("Preguntas", function($firebaseArray) {
-  var itemsRef = new Firebase('https://triviaionic.firebaseio.com/');
+  var itemsRef = new Firebase('https://trivia-b8a12.firebaseio.com/');
   return $firebaseArray(itemsRef.child('preguntas'));
 })
 
