@@ -13,7 +13,7 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-nativeaudio": {
             "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
         },
         "cordova-plugin-splashscreen": {
@@ -22,10 +22,16 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
         },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
         },
         "cordova-sqlite-ext": {
+            "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
         }
     },
