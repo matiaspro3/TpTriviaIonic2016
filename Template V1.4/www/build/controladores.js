@@ -22,7 +22,7 @@ angular.module('App.controladores', [])
       $cordovaVibration.vibrate(150);  
 
   try{
-      $scope.play('clickMal');
+     
       }catch(err){
         console.log("No es un dispositivo mobile");
       }
@@ -70,12 +70,67 @@ $state.go('app.gallery');
          // Custom functionality....
       });
    };
-})
 
 
-.controller('controlerTrivia', function($scope, $ionicPopup, $state,$stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout ) 
+
+/* fin controler*/})
+
+
+.controller('controlerTrivia', function($ionicPlatform,$scope, $ionicPopup ,$state,$stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout ) 
 {
+
+
+//////////////////////sonido
+  //Funciones Audio:
+try{
+
+  $cordovaNativeAudio
+    .preloadComplex('correcto', 'audio/correcto.mp3', 1, 1)
+    .then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      console.error(error);
+    });
+
+  $cordovaNativeAudio
+    .preloadComplex('incorrecto', 'audio/incorrecto.mp3', 1, 1)
+    .then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      console.error(error);
+    });
+
+} catch(e){"sin sonido"}
   
+
+
+
+$scope.play = function ($algo) {
+  try{
+    $cordovaNativeAudio.play($algo);
+  }catch(e){"sin sonido en play"}
+  };
+/*
+  $scope.stop = function () {
+
+    
+      $cordovaNativeAudio.stop('music');
+
+  };
+  */
+
+  //
+/****FIN FUNCIONES NATIVE AUDIO****/
+
+
+
+
+
+
+
+
+
+
         // no esta reciviendo paramatros el state
          //si le mando el nombre por paramatros necesito lo de abajo.
   /*$scope.nombreUsuario =angular.fromJson($stateParams); 
@@ -156,11 +211,17 @@ $scope.trivia = [] ;
 
 
   $scope.getPregunta = function() {
-  
+//  $scope.color=0;
+ // $scope.colorAc=false;
 
   
+$scope.cambiarColorBoton('todos',0);
+
     $scope.showComenzar = false;
     $scope.showPregunta = true;
+
+
+
 console.info("arrtrivia",$scope.trivia);
                                                                       //  cancela si toca muy rapido.
         //$scope.trivia =  angular.fromJson($scope.fireBas);
@@ -168,6 +229,8 @@ console.info("arrtrivia",$scope.trivia);
 console.info("lenght",$scope.arrtrivia.length);
 
 $scope.trivia = $scope.arrtrivia[Math.floor(Math.random() * $scope.arrtrivia.length)];
+if ($scope.trivia=="")$scope.getPregunta();
+
 
 console.info("trivia",$scope.trivia);
 
@@ -181,8 +244,9 @@ console.info("trivia",$scope.trivia);
 
   };
 
-$scope.setRespuesta = function($opcion) {
+$scope.setRespuesta = function($opcion,btn) {
     if($opcion){
+    
       try{
       $cordovaVibration.vibrate(100);  
       }
@@ -193,15 +257,18 @@ $scope.setRespuesta = function($opcion) {
      // $scope.play('clickBien');
     //Le agrego un retardo para que me muestre el popUp del resultado y me muestre la próxima pregunta
     //setTimeout(function() {
+      console.log(btn);
+      $scope.cambiarColorBoton(btn,1);
+         $scope.play('correcto');
      $scope.showAlert("CORRECTO!");
-        $scope.getPregunta();     
+       
 
 
           // }, 700);  
     }
 
 
-    else{
+    else{$scope.color=2;
       try{
         var patron = [100, 100, 100, 100];
         $cordovaVibration.vibrate(patron); 
@@ -217,8 +284,11 @@ $scope.setRespuesta = function($opcion) {
       }
 */
          //$scope.showAlert("INCORRECTO!", btnApretado);
+     //       $scope.play('Mal');
+         $scope.cambiarColorBoton(btn,2);
+           $scope.play('incorrecto');
          $scope.showAlert("INCORRECTO");
-       $scope.getPregunta();       
+      
     }
 
     
@@ -226,6 +296,37 @@ $scope.setRespuesta = function($opcion) {
 
 
 
+  $scope.cambiarColorBoton = function(btnApretado, estado) {
+ //   console.log("color");
+   // console.log(btnApretado);
+    //console.log(estado);
+
+      switch(btnApretado){
+        case 'bt1':
+          $scope.colorbt1 = estado;
+          console.log("color1");
+        break;
+        case 'bt2':
+         $scope.colorbt2 = estado;
+         console.log("color2");
+        break;
+        case 'bt3':
+          $scope.colorbt3 = estado;
+       console.log("color3");
+        break;
+        case 'todos' :
+
+        $scope.colorbt1=0;
+        $scope.colorbt2=0;
+        $scope.colorbt3=0;
+       console.log("colorTOdos"); 
+        break;
+
+        default:
+       console.log("colordefe");
+        break;
+      }
+  }
 
 /*
   $scope.setRespuesta = function(idOpcion, Respuesta, btnApretado) {
@@ -280,7 +381,7 @@ $scope.setRespuesta = function($opcion) {
       }
   }
 */
-  $scope.showAlert = function(resultado, btnApretado) {
+  $scope.showAlert = function(resultado, $btn) {
   
       var alertPopup = $ionicPopup.alert({
          title: resultado,
@@ -288,6 +389,9 @@ $scope.setRespuesta = function($opcion) {
       });
 
       alertPopup.then(function(res) {
+      //   $scope.cambiarColorBoton($btn,0);
+         $scope.getPregunta();     
+
         //vuelvo a poner el boton en el color por default
      //   $scope.cambiarColorBoton(btnApretado, 'clear'); 
         //recargo la variable random para que se recargue la siguiente pregunta
@@ -301,7 +405,7 @@ $scope.setRespuesta = function($opcion) {
 .factory("Base", function($firebaseArray) {
   var itemsRef = new Firebase('https://trivia-b8a12.firebaseio.com/');
   return itemsRef;
-});
+})
 //*************************************************************************************
     //servicios
 

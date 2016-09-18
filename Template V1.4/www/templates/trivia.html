@@ -27,17 +27,17 @@
 
 <br><br>
 
-<button class="button button-block button-positive"  ng-click="setRespuesta(trivia.rtas[0].correcta)">
+<button  ng-click="setRespuesta(trivia.rtas[0].correcta,'bt1')" ng-class="{'button button-block button-dark' : colorbt1==0 ,'button button-block button-calm': colorbt1==1, 'button button-block button-assertive': colorbt1== 2}">
   {{trivia.rtas[0].rta}}
 </button>
 
 
-<button class="button button-block button-positive"  ng-click="setRespuesta(trivia.rtas[1].correcta)">
+<button ng-click="setRespuesta(trivia.rtas[1].correcta,'bt2')" ng-class="{ 'button button-block button-dark' : colorbt2==0 ,'button button-block button-calm': colorbt2==1, 'button button-block button-assertive': colorbt2== 2}">
   {{trivia.rtas[1].rta}}
 </button>
 
 
-<button class="button button-block button-positive"  ng-click="setRespuesta(trivia.rtas[2].correcta)">
+<button  ng-click="setRespuesta(trivia.rtas[2].correcta,'bt3')" ng-class="{'button button-block button-dark' : colorbt3==0 ,'button button-block button-calm': colorbt3==1, 'button button-block button-assertive': colorbt3== 2}">
   {{trivia.rtas[2].rta}}
 
 

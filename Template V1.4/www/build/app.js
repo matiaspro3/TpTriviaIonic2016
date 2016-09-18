@@ -509,38 +509,6 @@ $scope.juegos= [
 /*/****////*/////////////////
 //********************************
 
-try{
-  if(!$scope.seCargaronLosSonidos){
-    $scope.seCargaronLosSonidos = true;
-  $cordovaNativeAudio
-      .preloadSimple('clickBien', 'audio/correcto.mp3')
-      .then(function (msg) {
-        console.log(msg);
-      }, function (error) {
-        console.log(error);
-      });
-
-  $cordovaNativeAudio
-      .preloadSimple('clickMal', 'audio/incorrecto.mp3')
-      .then(function (msg) {
-        console.log(msg);
-      }, function (error) {
-        console.log(error);
-      });
-  }
-}catch(err){
-  console.log("No es un dispositivo mobile");
-}
-
-/****FUNCIONES NATIVE AUDIO****/
-$scope.play = function (sound) {
-  try{
-  $cordovaNativeAudio.play(sound);
-  }catch(err){
-    console.log("No es un dispositivo mobile");
-  }
-};
-
 
 
 //*///

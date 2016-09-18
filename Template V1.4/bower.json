@@ -8,5 +8,8 @@
     "ngCordova": [
       "dist/ng-cordova.min.js"
     ]
+  },
+  "dependencies": {
+    "ngCordova": "^0.1.27-alpha"
   }
 }
