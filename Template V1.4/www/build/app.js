@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'App' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('App', ['ionic','firebase','App.firebase','App.controladores', 'ngCordova', 'ngAnimate'])
+angular.module('App', ['ionic','firebase','App.controladores', 'ngCordova', 'ngAnimate'])
 
 .run(['$ionicPlatform', 
 			'$sqliteService',
@@ -654,7 +654,7 @@ $scope.play = function (sound) {
 	function HomeController($scope, $ionicPopup, Modals, Model) {
 
 		$scope.users = [];
-
+		
 		$scope.Saludo = function () {
 			$ionicPopup.alert({
 				title: 'Hola Profe!',

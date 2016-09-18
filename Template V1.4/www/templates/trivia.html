@@ -3,8 +3,8 @@
   <ion-content class="center-content animated slideInUp">
 
 
-<br><br>
-      Hola {{usuario.nombre}} Vamos a jugar!!!
+<br><br><br><br><br><br>
+      <i style="color:yellow" >Hola {{usuario.nombre}} Vamos a jugar!!!</i>
 <br><br>
 
 <center ng-show="showComenzar">
@@ -14,42 +14,40 @@
     </button>
 </center>
 
-<div ng-show = "showPregunta" style="color:lightblue">
+<div ng-show = "showPregunta" style="color:blue" >
 <br><br>
 <br><br>
   <center>
-    
+        {{trivia.pregunta}}
 
-    {{preguntas1[random].$value}}
-    456
-    
+
   </center>
 <br><br>
 <br><br>
 
 <br><br>
 
-<button class="button button-block button-positive" ng-repeat="opcion in opciones" ng-show="opcion.$id =='o1'+preguntas[random].$id" 
- ng-click="setRespuesta(opcion.$id, preguntas[random].$id, respuestas[random].$value)">
-  {{opcion.$value}}
+<button class="button button-block button-positive"  ng-click="setRespuesta(trivia.rtas[0].correcta)">
+  {{trivia.rtas[0].rta}}
 </button>
 
 
-<button class="button button-block button-positive" ng-repeat="opcion in opciones" ng-show="opcion.$id =='o2'+preguntas[random].$id" ng-click="setRespuesta(opcion.$id, preguntas[random].$id, respuestas[random].$value)">
-  {{opcion.$value}}
+<button class="button button-block button-positive"  ng-click="setRespuesta(trivia.rtas[1].correcta)">
+  {{trivia.rtas[1].rta}}
 </button>
 
 
-<button class="button button-block button-positive" ng-repeat="opcion in opciones" ng-show="opcion.$id =='o3'+preguntas[random].$id"
- ng-click="setRespuesta(opcion.$id, preguntas[random].$id, respuestas[random].$value)">
-  {{opcion.$value}}
+<button class="button button-block button-positive"  ng-click="setRespuesta(trivia.rtas[2].correcta)">
+  {{trivia.rtas[2].rta}}
+
+
 </button>
 
 </div>
-
-
-
 <!--
+    {{preguntas1[random].$value}}
+    456
+
 <br><br>
 <br><br>
   <div class="button-bar">

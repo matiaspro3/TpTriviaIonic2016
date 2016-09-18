@@ -1,0 +1,48 @@
+{pregunta : " ¿2+2+2+3?",
+rtas :[
+{
+rta: "17",
+correcta: false
+},
+{
+rta: "10",
+correcta: false
+},
+{
+rta: "9",
+correcta: true
+}
+
+],
+ pregunta : " ¿7*7*7",
+rtas :[
+{
+rta: "17",
+correcta: false
+},
+{
+rta: "21",
+correcta: true
+},
+{
+rta: "36",
+correcta: false
+}
+
+] ,
+pregunta : " ¿Quien de los siguientes fue presidente de Argentina?",
+rtas :[
+{
+rta: "Franklin",
+correcta: false
+},
+{
+rta: "Rooslvelt",
+correcta: false
+},
+{
+rta: "Menen",
+correcta: true
+}
+
+]}
