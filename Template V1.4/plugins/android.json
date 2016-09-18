@@ -33,7 +33,14 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.nicholls.ionicstartertemplate"
+        }
+    }
 }

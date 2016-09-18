@@ -643,6 +643,8 @@ $scope.juegos= [
 			$scope.users = [];
 		};
 		
+
+
 		//Center content
 		//1. http://codepen.io/mhartington/pen/gcHeL
 		//2. http://codepen.io/anon/pen/meQJvp

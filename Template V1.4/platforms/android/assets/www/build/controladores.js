@@ -73,12 +73,6 @@ $state.go('app.gallery');
 
 
 
-/* fin controler*/})
-
-
-.controller('controlerTrivia', function($ionicPlatform,$scope, $ionicPopup ,$state,$stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout ) 
-{
-
 
 //////////////////////sonido
   //Funciones Audio:
@@ -105,7 +99,9 @@ try{
 
 
 
-$scope.play = function ($algo) {
+/*
+
+$rootScope.play = function ($algo) {
   try{
     $cordovaNativeAudio.play($algo);
   }catch(e){"sin sonido en play"}
@@ -124,7 +120,116 @@ $scope.play = function ($algo) {
 
 
 
+//////////////////////////////////////////////////////////////////////////////
 
+// firebase
+ var ref = new Firebase("https://trivia-b8a12.firebaseio.com/preguntas");
+
+
+//agregagar preguntas  
+  
+/*
+  ref.push(
+
+{
+pregunta : "11 + 5 + 9 + 3 - 5 - 6 -17 + 5",
+rtas :[
+{
+rta: "17",
+correcta: false
+},
+{
+rta: "5",
+correcta: true
+},
+{
+rta: "12",
+correcta: true
+}
+
+]
+    }
+    );
+
+*/
+
+//////// 
+$scope.fireBas;
+ref.once("value", function(snapshot) {
+  //console.info("Datos", snapshot.val());
+  
+  
+    $scope.fireBas = snapshot.val();
+ 
+    
+//console.log($scope.fireBas);
+console.info("Datos fireBas", $scope.fireBas);
+
+
+$rootScope.arrtrivia  =[]; 
+for (preg in $scope.fireBas) {
+   $rootScope.arrtrivia.push($scope.fireBas[preg]);
+}
+  });
+
+
+
+console.info("Datos arrtrivia", $rootScope.arrtrivia);
+// firebase fin
+
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* fin controler*/})
+
+
+
+
+
+
+
+
+
+.controller('controlerTrivia', function($ionicPlatform,$scope, $ionicPopup ,$state,$stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout ) 
+{
+
+
+
+
+
+
+$scope.play = function ($algo) {
+  try{
+    $cordovaNativeAudio.play($algo);
+  }catch(e){"sin sonido en play"}
+  };
 
 
 
@@ -157,53 +262,6 @@ $scope.play = function ($algo) {
     $scope.showComenzar = true;
 
 
-// firebase
- var ref = new Firebase("https://trivia-b8a12.firebaseio.com/preguntas");
-  /*
-  ref.push(
-
-{
-pregunta : "2*2*2+3?",
-rtas :[
-{
-rta: "13",
-correcta: false
-},
-{
-rta: "10",
-correcta: false
-},
-{
-rta: "9",
-correcta: true
-}
-
-]
-    }
-    );
-*/
-
-$scope.fireBas;
-ref.once("value", function(snapshot) {
-  //console.info("Datos", snapshot.val());
-  
-  
-  
-    $scope.fireBas = snapshot.val();
- 
-    
-//console.log($scope.fireBas);
-console.info("Datos", $scope.fireBas);
-
-
-$scope.arrtrivia  =[]; 
-for (elem in $scope.fireBas) {
-   $scope.arrtrivia.push($scope.fireBas[elem]);
-}
-  });
-// firebase fin
-
-
 
 
 $scope.trivia = [] ;
@@ -222,7 +280,7 @@ $scope.cambiarColorBoton('todos',0);
 
 
 
-console.info("arrtrivia",$scope.trivia);
+//console.info("arrtrivia",$scope.trivia);
                                                                       //  cancela si toca muy rapido.
         //$scope.trivia =  angular.fromJson($scope.fireBas);
 
