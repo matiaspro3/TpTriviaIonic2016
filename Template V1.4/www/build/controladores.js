@@ -222,7 +222,7 @@ console.info("Datos arrtrivia", $rootScope.arrtrivia);
 
 //archivo
 
-
+/*
 try{
 
 
@@ -281,8 +281,8 @@ try{
 
 
 } catch(e){console.log("archivo faLLA");}
-
-//
+*/
+//$scope.Grabar();
 
 $scope.play = function ($algo) {
   try{
@@ -291,7 +291,7 @@ $scope.play = function ($algo) {
   };
 
 
-$scope.Grabar();
+
 
 
 
