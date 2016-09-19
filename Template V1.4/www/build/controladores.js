@@ -217,13 +217,72 @@ console.info("Datos arrtrivia", $rootScope.arrtrivia);
 
 
 
-.controller('controlerTrivia', function($ionicPlatform,$scope, $ionicPopup ,$state,$stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout ) 
+.controller('controlerTrivia', function($ionicPlatform,$scope, $ionicPopup ,$state,$stateParams, $cordovaVibration,  $cordovaNativeAudio, $timeout, $cordovaFile) 
 {
 
+//archivo
+
+
+try{
+
+
+  $scope.Grabar=function(){
+    
+      //if($ionicPlatform.isAndroid){
+          $cordovaFile.checkDir(cordova.file.externalApplicationStorageDirectory, "files/"+$rootScope.usuario.nombre)
+          .then(function (success) {
+
+//$scope.showAlert("encontro el direc");
+            $cordovaFile.writeFile(cordova.file.externalApplicationStorageDirectory, "files/"+$rootScope.usuario.nombre+"/Secuencia.txt", "olaaa", true)
+              .then(function (success) {
+
+                //$scope.showAlert("creo el arch 11");
+
+              }, function (error) {
+
+                //$scope.showAlert("erro al crealro");
+
+              });
+
+          }, function (error) {
+
+            //$scope.showAlert("NO encontro el direc");
+            $cordovaFile.createDir(cordova.file.externalApplicationStorageDirectory, "files/"+$rootScope.usuario.nombre, false)
+            .then(function (success) {
+
+        //      $scope.showAlert("creoo direc");
+        
+
+              $cordovaFile.writeFile(cordova.file.externalApplicationStorageDirectory, "files/"+$rootScope.usuario.nombre+"/Secuencia.txt","ola mundo cruelllll", true)
+        
+              .then(function (success) {
+
+                //$scope.showAlert("creoo el arch 22");
+
+              }, function (error) {
+
+                
+                //$scope.showAlert("error al gra arch");
+              });
+
+            }, function (error) {
+
+          $scope.showAlert("error al crear dire");
+
+            });
+
+          });
+      //}
+  };
 
 
 
 
+
+
+} catch(e){console.log("archivo faLLA");}
+
+//
 
 $scope.play = function ($algo) {
   try{
@@ -232,7 +291,7 @@ $scope.play = function ($algo) {
   };
 
 
-
+$scope.Grabar();
 
 
 
@@ -351,7 +410,6 @@ $scope.setRespuesta = function($opcion,btn) {
 
     
   };
-
 
 
   $scope.cambiarColorBoton = function(btnApretado, estado) {

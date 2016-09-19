@@ -529,7 +529,7 @@ $scope.juegos= [
         .controller('contolerOla', contolerOla);
 
     contolerOla.$inject = ['$scope', '$state'];
-    function contolerOla($scope, $state) {
+    function contolerOla($scope, $state,$cordovaFile) {
         //itemmm
         /*$scope.openItem = function(item){
             //$state.go('app.item', { title: item.title, icon: item.icon, color: item.color });
@@ -539,7 +539,7 @@ $scope.juegos= [
         			}
         				else $state.go('app.item', { title: item.title, icon: item.icon, color: item.color });
         };*/
-    }
+}
 })();
 
 (function() {
